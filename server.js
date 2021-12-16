@@ -25,11 +25,30 @@ if (process.env.NODE_ENV === "production") {
 
 let dataDb;
 
-app.get("/api", (req, res) => {
-  fs.readFile("todos.json", (err, data) => {
+app.post("login", (req, res) => {
+  let user = req.body.user;
+  fs.readFile("data.json", (err, data) => {
     if (err) throw err;
     dataDb = JSON.parse(data);
-    res.send(dataDb)
+    if (dataDb.find(x => x.userName === user.userName && x.password === user.password)) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(403)
+    }
+  })
+})
+
+app.post("/api", (req, res) => {
+  let user = req.body.user;
+  fs.readFile("data.json", (err, data) => {
+    if (err) throw err;
+    dataDb = JSON.parse(data);
+    let userData = dataDb.find(x => x.userName === user.userName);
+    if (userData) {
+      res.send(JSON.stringify(userData.todo));
+    } else {
+      res.sendStatus(403)
+    }
   })
 });
 
