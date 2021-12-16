@@ -19,6 +19,10 @@ app.use(function (req, res, next) {
   next();
   });
 
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"))
+}
+
 let dataDb;
 
 app.get("/api", (req, res) => {
