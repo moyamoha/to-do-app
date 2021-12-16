@@ -1,0 +1,62 @@
+.cal-body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    font-size: 1.2rem;
+  }
+  
+  #cal-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 350px;
+    height: fit-content;
+    padding: 5px;
+  }
+  
+  .week-day {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    color: brown;
+  }
+  
+  
+  #month-chooser {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  
+  #prev, #next{
+    height: 15px;
+    width: 15px;
+    transform: rotate(45deg);
+    border-width: 4px;
+    border-color: greenyellow;
+    border-style: solid;
+    box-sizing: border-box;
+  }
+  
+  #next:hover, #prev:hover {
+    border-width: 6px;
+    cursor: pointer;
+  }
+  
+  #next {
+    border-bottom: 0;
+    border-left: 0;
+  }
+  
+  #prev {
+    border-top: 0;
+    border-right: 0;
+  }
+  

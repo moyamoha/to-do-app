@@ -1,0 +1,40 @@
+.current {
+    border-radius: 10%;
+    border: 2px solid rgb(71, 141, 233);
+    background-color: blanchedalmond;
+}
+
+.paiva {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border-radius: 50%;
+}
+
+.paiva:hover {
+    border-radius: 50%;
+    border: 2px solid rgb(71, 141, 233);
+    cursor: pointer;
+    background-color: blanchedalmond;
+    color: black;
+}
+
+
+.today {
+    background-color: #eee;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.tyhja {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
