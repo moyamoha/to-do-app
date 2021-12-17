@@ -66,41 +66,55 @@ app.post(`/delete`, (req, res) => {
         if (err) throw err;
         res.sendStatus(200)
       })
+    } else {
+      res.status(404).send("User not found")
     }
   })
 })
 
 
 app.post(`/add`, (req, res) => {
-  let todo = req.body;
-  let uusData;
+  let todo_item = req.body.todo;
+  let user = req.body.user;
+  console.log("tänne saavuttiin")
+  console.log(todo_item)
   fs.readFile("data.json", (err, data) => {
     if (err) throw err;
-    uusData = JSON.parse(data);
-    uusData.push(todo);
-    fs.writeFile("data.json", JSON.stringify(uusData), err => {
-      if (err) throw err;
-      console.log("Writing to file successful")
-    })
-    res.send("done")
+    dataDb = JSON.parse(data)
+    let indexOfUser = dataDb.map(x => x.userName).indexOf(user);
+    if (indexOfUser >= 0) {
+      dataDb[indexOfUser].todos.push(todo_item)
+      fs.writeFile('data.json', JSON.stringify(dataDb), err => {
+        if (err) throw err;
+        res.sendStatus(200)
+      })
+    } else {
+      res.status(404).send("User not found")
+    }
   })
 })
 
 app.post(`/edit`, (req, res) => {
-  let todo_item = req.body;
-  console.log(todo_item)
-  let uusData;
-  fs.readFile("todos.json", (err, data) => {
+  let todo_item = req.body.todo;
+  let user = req.body.user;
+  fs.readFile("data.json", (err, data) => {
     if (err) throw err;
-    uusData = Array.from(JSON.parse(data));
-    const indOfEditing = uusData.map(x => x.id).indexOf(todo_item.id);
-    console.log(indOfEditing)
-    uusData[indOfEditing] = todo_item;
-    fs.writeFile("todos.json", JSON.stringify(uusData), err => {
-      if (err) throw err;
-      console.log("Writing to file successful")
-    })
-    res.send("Edit successful")
+    dataDb = JSON.parse(data)
+    let indexOfUser = dataDb.map(x => x.userName).indexOf(user);
+    if (indexOfUser >= 0) {
+      let indOfTodo = dataDb[indexOfUser].todos.map(to2 => to2.id).indexOf(todo_item.id);
+      if (indOfTodo >= 0) {
+        dataDb[indexOfUser].todos[indOfTodo] = todo_item;
+        fs.writeFile("data.json", JSON.stringify(dataDb), err => {
+          if (err) throw err;
+          res.sendStatus(200)
+        })
+      } else {
+        res.sendStatus(403)
+      }
+    } else {
+      res.status(404).send("User not found")
+    }
   })
 })
 

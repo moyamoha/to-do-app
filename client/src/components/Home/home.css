@@ -170,13 +170,15 @@
     align-items: center;
     background-color: rgb(100, 73, 73);
     color: white;
-    padding: 0 5px;
+    padding: 0 10px;
 }
 
 .navbar-link-cont {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     padding: 0;
+    height: 100%;
 }
 
 .headerLink {
@@ -192,6 +194,7 @@
 .headerLink:hover {
     color: black;
     background-color: white;
+
 }
 
 /*Filter*/

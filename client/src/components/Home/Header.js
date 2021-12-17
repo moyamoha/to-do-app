@@ -10,14 +10,6 @@ export default function Header({userName, logout}) {
               <Link to={"/home/user"} className="headerLink">
                   Home
               </Link>
-              <a
-                  className="headerLink"
-                  target="_blank"
-                  rel="noreferrer"
-                  href="https://moyamoha.pythonanywhere.com/"
-              >
-                  <span>My Personal profile</span>
-              </a>
               <Link to={"/home/calender"} className="headerLink">
                   Calender
               </Link>
