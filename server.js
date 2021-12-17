@@ -53,26 +53,20 @@ app.post("/api", (req, res) => {
   })
 });
 
-function todosEqual(todo1, todo2) {
-  return todo1.title === todo2.title &&
-         todo1.description === todo2.description &&
-         todo1.date_due === todo2.date_due &&
-         todo1.state === todo2.state &&
-         todo1.importance === todo2.importance;
-}
-
 app.post(`/delete`, (req, res) => {
   let id = req.body.id;
-  let uusData;
-  fs.readFile("todos.json", (err, data) => {
+  let user = req.body.user;
+  fs.readFile("data.json", (err, data) => {
     if (err) throw err;
     dataDb = JSON.parse(data);
-    uusData = dataDb.filter(x => x.id !== id);
-    fs.writeFile("todos.json", JSON.stringify(uusData), err => {
-      if (err) throw err;
-      console.log("Writing to file successful")
-    })
-    res.send("Deletion successful")
+    let indexOfUser = dataDb.map(x => x.userName).indexOf(user);
+    if (indexOfUser >= 0) {
+      dataDb[indexOfUser].todos = dataDb[indexOfUser].todos.filter(todo => todo.id !== id);
+      fs.writeFile("data.json", JSON.stringify(dataDb), err => {
+        if (err) throw err;
+        res.sendStatus(200)
+      })
+    }
   })
 })
 
