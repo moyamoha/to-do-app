@@ -23,6 +23,10 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"))
 }
 
+app.get("/home/user", (req, res) => {
+  app.sendFile("client/build/index.html")
+})
+
 let dataDb;
 
 app.post("/login", (req, res) => {
