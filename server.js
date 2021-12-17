@@ -27,6 +27,10 @@ app.get('*', function(req, res) {
   res.redirect('/');
 });
 
+app.get("/home/calender", function(req, res) {
+  res.redirect("client/src/components/home/Calender.js")
+})
+
 let dataDb;
 
 app.post("/login", (req, res) => {
