@@ -25,8 +25,9 @@ if (process.env.NODE_ENV === "production") {
 
 let dataDb;
 
-app.post("login", (req, res) => {
-  let user = req.body.user;
+app.post("/login", (req, res) => {
+  console.log("tänne saavuttiin")
+  let user = req.body;
   fs.readFile("data.json", (err, data) => {
     if (err) throw err;
     dataDb = JSON.parse(data);
@@ -39,13 +40,13 @@ app.post("login", (req, res) => {
 })
 
 app.post("/api", (req, res) => {
-  let user = req.body.user;
+  let userName = req.body.user;
   fs.readFile("data.json", (err, data) => {
     if (err) throw err;
     dataDb = JSON.parse(data);
-    let userData = dataDb.find(x => x.userName === user.userName);
+    let userData = dataDb.find(x => x.userName === userName);
     if (userData) {
-      res.send(JSON.stringify(userData.todo));
+      res.send(JSON.stringify(userData.todos));
     } else {
       res.sendStatus(403)
     }
@@ -79,11 +80,11 @@ app.post(`/delete`, (req, res) => {
 app.post(`/add`, (req, res) => {
   let todo = req.body;
   let uusData;
-  fs.readFile("todos.json", (err, data) => {
+  fs.readFile("data.json", (err, data) => {
     if (err) throw err;
     uusData = JSON.parse(data);
     uusData.push(todo);
-    fs.writeFile("todos.json", JSON.stringify(uusData), err => {
+    fs.writeFile("data.json", JSON.stringify(uusData), err => {
       if (err) throw err;
       console.log("Writing to file successful")
     })

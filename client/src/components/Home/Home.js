@@ -55,14 +55,14 @@ function Home({userName, setUser}) {
               setFilter={setFilter}
               setEditingState={setEditingStates}
             ></Filter>
-            {data ? (
+            {data ? (data.length > 0 ? (
               <TodoList
                 data={data}
                 setData={setData}
                 filter={filter}
                 setEditingState={setEditingStates}
                 user={userName}
-              ></TodoList>
+              ></TodoList>) : "Nothing to show"
             ) : (
               <div id="loading-container">
                 <div id="loading"></div>
@@ -97,14 +97,14 @@ function Home({userName, setUser}) {
               filter={filter}
               setFilter={setFilter}
             ></Filter>
-            {data ? (
+            {data ? (data.length > 0 ? (
               <TodoList
                 data={data}
                 setData={setData}
                 filter={filter}
                 setEditingState={setEditingStates}
                 user={userName}
-              ></TodoList>
+              ></TodoList>) : "Nothing to show"
             ) : (
               <div id="loading-container">
                 <div id="loading"></div>
