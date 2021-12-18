@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import Login from './components/Login/Login'
-import { BrowserRouter, Route, Routes, Navigate} from 'react-router-dom'
+import React, { useState } from 'react';
+import Login from './components/Login/Login';
+import { BrowserRouter, Route, Routes, Navigate} from 'react-router-dom';
 import Home from './components/Home/Home';
 import Calender from './components/Home/Calender';
-import CreateAccount from './components/CreateAccount'
+import CreateAccount from './components/CreateAccount';
 
 
 export default function App() {
