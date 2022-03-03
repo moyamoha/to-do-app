@@ -4,7 +4,6 @@ import { useNavigate } from "react-router";
 import createTodo from "../redux/api/addNewTodo";
 
 export default function NewTodoForm() {
-	const [error, setError] = useState("");
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const [form, setForm] = useState({
@@ -27,13 +26,13 @@ export default function NewTodoForm() {
 			</div>
 			<div className="row justify-content-center mt-5">
 				<div className="col-md-5">
-					{error ? (
+					{/* 					{error ? (
 						<div className="alert alert-danger" role="alert">
 							{error}
 						</div>
 					) : (
 						<></>
-					)}
+					)} */}
 					<form method="POST" onSubmit={handleSubmit}>
 						<div className="form-group">
 							<label htmlFor="title">Title</label>

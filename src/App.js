@@ -3,7 +3,6 @@ import Completed from "./pages/Completed";
 import { Navigate, Route, Routes } from "react-router";
 import Home from "./pages/Home";
 import Create from "./pages/Create";
-import "./App.css";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import { useSelector } from "react-redux";
