@@ -6,26 +6,23 @@ import { useDispatch, useSelector } from "react-redux";
 export default function LoginForm() {
 	const error = useSelector((state) => state.user.error);
 	const dispatch = useDispatch();
-
-	const form = useRef();
-	const [formData, setFormData] = useState({
-		username: "",
-		password: "",
-	});
-
-	useEffect(() => {
-		form.current.reset();
-	}, []);
+	const username = useRef();
+	const password = useRef();
 
 	const sendFormToLogin = (e) => {
 		e.preventDefault();
-		dispatch(loginUser(formData));
+		dispatch(
+			loginUser({
+				username: username.current.value,
+				password: password.current.value,
+			})
+		);
 		e.target.reset();
 	};
 	return (
 		<>
 			<ErrorAlert error={error}></ErrorAlert>
-			<form ref={form} method="POST" onSubmit={sendFormToLogin}>
+			<form method="POST" onSubmit={sendFormToLogin}>
 				<div className="form-group">
 					<label htmlFor="username">Username</label>
 					<input
@@ -33,12 +30,7 @@ export default function LoginForm() {
 						name="username"
 						className="form-control"
 						id="username"
-						onChange={(e) =>
-							setFormData({
-								...formData,
-								username: e.target.value,
-							})
-						}
+						ref={username}
 					></input>
 				</div>
 				<div className="form-group">
@@ -48,12 +40,7 @@ export default function LoginForm() {
 						name="password"
 						className="form-control"
 						id="password"
-						onChange={(e) =>
-							setFormData({
-								...formData,
-								password: e.target.value,
-							})
-						}
+						ref={password}
 					></input>
 				</div>
 				<button type="submit" className="btn btn-primary">
