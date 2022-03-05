@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import registerUser from "../redux/api/registerUser";
@@ -6,6 +6,7 @@ import ErrorAlert from "./ErrorAlert";
 
 export default function SignupForm() {
 	const error = useSelector((state) => state.user.error);
+	const form = useRef();
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({
@@ -15,6 +16,10 @@ export default function SignupForm() {
 		password2: "",
 		firstname: "",
 		lastname: "",
+	});
+
+	useEffect(() => {
+		form.current.reset();
 	});
 
 	const handleChange = useCallback(
@@ -33,13 +38,12 @@ export default function SignupForm() {
 		e.preventDefault();
 		dispatch(registerUser(formData));
 		navigate("/signup");
-		e.target.reset();
 	};
 
 	return (
 		<>
 			<ErrorAlert error={error}></ErrorAlert>
-			<form method="POST" onSubmit={handleSubmit}>
+			<form method="POST" ref={form} onSubmit={handleSubmit}>
 				<div className="form-group d-flex justify-content-between gap-3">
 					<div style={{ width: "48%" }}>
 						<label htmlFor="firstname">First name</label>
