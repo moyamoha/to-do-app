@@ -33,6 +33,7 @@ export default function SignupForm() {
 		e.preventDefault();
 		dispatch(registerUser(formData));
 		navigate("/signup");
+		e.target.reset();
 	};
 
 	return (
@@ -41,7 +42,7 @@ export default function SignupForm() {
 			<form method="POST" onSubmit={handleSubmit}>
 				<div className="form-group d-flex justify-content-between gap-3">
 					<div style={{ width: "48%" }}>
-						<label for="firstname">First name</label>
+						<label htmlFor="firstname">First name</label>
 						<input
 							type="text"
 							name="firstname"
@@ -52,7 +53,7 @@ export default function SignupForm() {
 						></input>
 					</div>
 					<div style={{ width: "48%" }}>
-						<label for="lastname">Last name</label>
+						<label htmlFor="lastname">Last name</label>
 						<input
 							type="text"
 							name="lastname"
@@ -64,7 +65,7 @@ export default function SignupForm() {
 					</div>
 				</div>
 				<div className="form-group">
-					<label for="username">Username</label>
+					<label htmlFor="username">Username</label>
 					<input
 						type="text"
 						name="username"
@@ -81,7 +82,7 @@ export default function SignupForm() {
 					</small>
 				</div>
 				<div className="form-group">
-					<label for="email">Email</label>
+					<label htmlFor="email">Email</label>
 					<input
 						type="email"
 						name="email"
@@ -92,7 +93,7 @@ export default function SignupForm() {
 					></input>
 				</div>
 				<div className="form-group">
-					<label for="password1">Password</label>
+					<label htmlFor="password1">Password</label>
 					<input
 						type="password"
 						name="password1"
@@ -103,7 +104,7 @@ export default function SignupForm() {
 					></input>
 				</div>
 				<div className="form-group">
-					<label for="password2">Confirm Password</label>
+					<label htmlFor="password2">Confirm Password</label>
 					<input
 						type="password"
 						name="password2"
