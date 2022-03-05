@@ -10,9 +10,11 @@ export default function LoginForm() {
 	const password = useRef();
 
 	useEffect(() => {
+		console.log(username.current.value);
+		console.log(password.current.value);
 		username.current.value = "";
 		password.current.value = "";
-	});
+	}, []);
 
 	const sendFormToLogin = (e) => {
 		e.preventDefault();
