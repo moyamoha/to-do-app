@@ -43,7 +43,13 @@ export default function SignupForm() {
 	return (
 		<>
 			<ErrorAlert error={error}></ErrorAlert>
-			<form method="POST" ref={form} onSubmit={handleSubmit}>
+			<form method="POST" autoComplete="off" ref={form} onSubmit={handleSubmit}>
+				<input
+					type="text"
+					style={{ display: "none" }}
+					autoComplete={false}
+					name="hidden"
+				></input>
 				<div className="form-group d-flex justify-content-between gap-3">
 					<div style={{ width: "48%" }}>
 						<label htmlFor="firstname">First name</label>

@@ -27,7 +27,13 @@ export default function LoginForm() {
 	return (
 		<>
 			<ErrorAlert error={error}></ErrorAlert>
-			<form method="POST" onSubmit={sendFormToLogin}>
+			<form method="POST" autoComplete="off" onSubmit={sendFormToLogin}>
+				<input
+					type="text"
+					style={{ display: "none" }}
+					autoComplete={false}
+					name="hidden"
+				></input>
 				<div className="form-group">
 					<label htmlFor="username">Username</label>
 					<input
