@@ -14,6 +14,7 @@ export default function LoginForm() {
 	const sendFormToLogin = (e) => {
 		e.preventDefault();
 		dispatch(loginUser(formData));
+		e.target.reset();
 	};
 	return (
 		<>

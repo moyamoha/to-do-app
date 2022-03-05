@@ -15,19 +15,22 @@ const loginUser = (credentials) => {
 					}),
 				}
 			);
-			if (res.status !== 200) {
-				dispatch(setError("Please check your credintials"));
+			if (res.status === 200) {
+				const data = await res.json();
+				if (data.error) {
+					dispatch(setError("Please check your credintials"));
+					return;
+				}
+				const username = JSON.parse(
+					window.atob(data.token.split(".")[1])
+				).username;
+				dispatch(
+					login({
+						username: username,
+						token: "Bearer " + data.token,
+					})
+				);
 			}
-			const data = await res.json();
-			const username = JSON.parse(
-				window.atob(data.token.split(".")[1])
-			).username;
-			dispatch(
-				login({
-					username: username,
-					token: "Bearer " + data.token,
-				})
-			);
 		} catch (err) {}
 	};
 };
