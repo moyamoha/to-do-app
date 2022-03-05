@@ -27,7 +27,7 @@ export default function LoginForm() {
 	return (
 		<>
 			<ErrorAlert error={error}></ErrorAlert>
-			<form method="POST" autoComplete="off" onSubmit={sendFormToLogin}>
+			<form method="POST" autoComplete="nope" onSubmit={sendFormToLogin}>
 				<input
 					type="text"
 					style={{ display: "none" }}
