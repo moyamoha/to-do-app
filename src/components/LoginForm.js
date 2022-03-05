@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ErrorAlert from "./ErrorAlert";
 import loginUser from "../redux/api/loginUser";
 import { useDispatch, useSelector } from "react-redux";
@@ -6,10 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 export default function LoginForm() {
 	const error = useSelector((state) => state.user.error);
 	const dispatch = useDispatch();
+
+	const form = useRef();
 	const [formData, setFormData] = useState({
 		username: "",
 		password: "",
 	});
+
+	useEffect(() => {
+		form.current.reset();
+	}, []);
 
 	const sendFormToLogin = (e) => {
 		e.preventDefault();
@@ -19,7 +25,7 @@ export default function LoginForm() {
 	return (
 		<>
 			<ErrorAlert error={error}></ErrorAlert>
-			<form method="POST" onSubmit={sendFormToLogin}>
+			<form ref={form} method="POST" onSubmit={sendFormToLogin}>
 				<div className="form-group">
 					<label htmlFor="username">Username</label>
 					<input
