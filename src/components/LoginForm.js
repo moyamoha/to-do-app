@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import ErrorAlert from "./ErrorAlert";
 import loginUser from "../redux/api/loginUser";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,7 +62,7 @@ export default function LoginForm() {
 					></input>
 				</div>
 				<button type="submit" className="btn btn-primary">
-					{loggingIn ? "Logging ..." : "Login"}
+					{loggingIn && !error ? "Logging ..." : "Login"}
 				</button>
 			</form>
 		</>
