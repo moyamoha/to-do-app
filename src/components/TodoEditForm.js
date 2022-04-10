@@ -16,7 +16,7 @@ export default function TodoEditForm({ todo }) {
 	});
 
 	const handleDelete = () => {
-		dispatch(deleteTodo(todo.title));
+		dispatch(deleteTodo(todo._id));
 		navigate(`${todo.state === "completed" ? "/completed" : "/current"}`);
 	};
 
@@ -26,7 +26,7 @@ export default function TodoEditForm({ todo }) {
 	};
 
 	const handleSubmit = () => {
-		dispatch(editTodo(todo.title, form));
+		dispatch(editTodo(todo._id, form));
 		navigate(todo.state === "completed" ? "/completed" : "/current");
 	};
 

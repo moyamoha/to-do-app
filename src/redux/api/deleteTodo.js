@@ -1,20 +1,18 @@
+import axios from "axios";
+
 import { removeTodo } from "../slices/todos";
 
-const deleteTodo = (title) => {
+const deleteTodo = (id) => {
 	return async (dispatch, getState) => {
+		const token = getState().user.token;
 		try {
-			const res = await fetch(
-				`https://todo-rest-api-node.herokuapp.com/todos/${title}`,
-				{
-					headers: {
-						"Content-Type": "application/json",
-						authorization: getState().user.token,
-					},
-					method: "DELETE",
-				}
-			);
+			const res = await axios.delete("/todos/" + id, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			if (res.status === 204) {
-				dispatch(removeTodo(title));
+				dispatch(removeTodo(id));
 			}
 		} catch (err) {}
 	};

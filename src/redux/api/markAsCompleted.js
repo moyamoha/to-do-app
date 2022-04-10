@@ -1,20 +1,21 @@
+import axios from "axios";
 import { completeTodo } from "../slices/todos";
 
-const complete = (title) => {
+const complete = (id) => {
 	return async (dispatch, getState) => {
+		const token = getState().user.token;
 		try {
-			const res = await fetch(
-				`https://todo-rest-api-node.herokuapp.com/todos/markAsDone/${title}`,
+			const res = await axios.patch(
+				"/todos/markAsDone/" + id,
+				{},
 				{
 					headers: {
-						"Content-Type": "application/json",
-						authorization: getState().user.token,
+						Authorization: `Bearer ${token}`,
 					},
-					method: "PATCH",
 				}
 			);
 			if (res.status === 200) {
-				dispatch(completeTodo(title));
+				dispatch(completeTodo(id));
 			}
 		} catch (err) {}
 	};

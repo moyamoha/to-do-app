@@ -1,19 +1,12 @@
+import axios from "axios";
+
 import { setError } from "../slices/user";
 import loginUser from "./loginUser";
 
 const registerUser = (formData) => {
 	return async (dispatch, getState) => {
 		try {
-			const response = await fetch(
-				"https://todo-rest-api-node.herokuapp.com/auth/signup",
-				{
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(formData),
-				}
-			);
+			const response = await axios.post("/auth/signup", formData);
 			if (response.status === 201) {
 				try {
 					dispatch(
@@ -24,8 +17,7 @@ const registerUser = (formData) => {
 					);
 				} catch (err) {}
 			} else {
-				const data = await response.json();
-				dispatch(setError(data.error));
+				dispatch(setError(response.data.error));
 			}
 		} catch (err) {}
 	};

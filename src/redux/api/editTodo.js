@@ -1,22 +1,18 @@
+import axios from "axios";
+
 import { changeTodo } from "../slices/todos";
 
-const editTodo = (oldTitle, todo) => {
+const editTodo = (id, todo) => {
 	return async (dispatch, getState) => {
+		const token = getState().user.token;
 		try {
-			const res = await fetch(
-				`https://todo-rest-api-node.herokuapp.com/todos/${oldTitle}`,
-				{
-					headers: {
-						"Content-Type": "application/json",
-						authorization: getState().user.token,
-					},
-					method: "PUT",
-					body: JSON.stringify(todo),
-				}
-			);
-			const data = await res.json();
+			const res = await axios.put("/todos/" + id, todo, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			if (res.status === 200) {
-				dispatch(changeTodo({ oldTitle, data }));
+				dispatch(changeTodo({ id: id, data: res.data }));
 			}
 		} catch (err) {}
 	};

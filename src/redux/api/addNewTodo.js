@@ -1,22 +1,18 @@
+import axios from "axios";
+
 import { addTodo } from "../slices/todos";
 
 const createTodo = (todo) => {
 	return async (dispatch, getState) => {
+		const token = getState().user.token;
 		try {
-			const res = await fetch(
-				`https://todo-rest-api-node.herokuapp.com/todos/`,
-				{
-					headers: {
-						"Content-Type": "application/json",
-						authorization: getState().user.token,
-					},
-					method: "POST",
-					body: JSON.stringify(todo),
-				}
-			);
+			const res = await axios.post("/todos/", todo, {
+				headers: {
+					Authorization: `Bearer ${token}`,
+				},
+			});
 			if (res.status === 201) {
-				const data = await res.json();
-				dispatch(addTodo(data));
+				dispatch(addTodo(res.data));
 			}
 		} catch (err) {}
 	};
