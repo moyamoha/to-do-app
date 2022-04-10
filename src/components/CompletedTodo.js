@@ -8,7 +8,7 @@ export default function CompletedTodo({ todo }) {
 			className="list-group-item list-group-item-action list-group-item-success"
 		>
 			<b>{todo.title}</b> - Completed on{" "}
-			{new Date(todo.dateCompleted).toLocaleString()}
+			{new Date(todo.dateCompleted).toLocaleString("fi")}
 		</Link>
 	);
 }
