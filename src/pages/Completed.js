@@ -7,7 +7,11 @@ export default function Completed() {
 	const todos = useSelector((state) => state.todos.data);
 
 	const completed = useMemo(() => {
-		return todos.filter((td) => td.state === "completed");
+		const result = todos.filter((td) => td.state === "completed");
+		result.sort((a, b) => {
+			return new Date(b.dateCompleted) - new Date(a.dateCompleted);
+		});
+		return result;
 	}, [todos]);
 	return (
 		<BaseLayout>
