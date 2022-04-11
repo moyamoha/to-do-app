@@ -21,12 +21,14 @@ export default function TodoEditForm({ todo }) {
 	};
 
 	const handleComplete = () => {
-		dispatch(complete(todo.title));
+		dispatch(complete(todo._id));
 		navigate("/completed");
 	};
 
 	const handleSubmit = () => {
+		console.log(todo._id);
 		dispatch(editTodo(todo._id, form));
+		console.log(form);
 		navigate(todo.state === "completed" ? "/completed" : "/current");
 	};
 

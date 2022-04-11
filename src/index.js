@@ -9,7 +9,7 @@ import reportWebVitals from "./reportWebVitals";
 import store from "./redux/store";
 import "./index.css";
 
-axios.defaults.baseURL = "https://todo-rest-api-node.herokuapp.com";
+axios.defaults.baseURL = "http://localhost:5000";
 
 ReactDOM.render(
 	<Provider store={store}>
