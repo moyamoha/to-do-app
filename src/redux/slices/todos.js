@@ -14,7 +14,7 @@ const todoSlice = createSlice({
 			state.data.splice(indOfTodo, 1);
 		},
 		completeTodo: (state, action) => {
-			const indOfTodo = state.data.map((t) => t.id).indexOf(action.payload);
+			const indOfTodo = state.data.map((t) => t._id).indexOf(action.payload);
 			state.data[indOfTodo].dateCompleted = new Date(Date.now()).toISOString();
 			state.data[indOfTodo].state = "completed";
 		},
