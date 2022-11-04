@@ -11,11 +11,8 @@ export default function SignupForm() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
     password1: "",
     password2: "",
-    firstname: "",
-    lastname: "",
   });
 
   useEffect(() => {
