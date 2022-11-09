@@ -1,10 +1,8 @@
 export const getTodoStateText = (todo) => {
-  switch (todo.state) {
-    case "notStarted":
-      return "not started";
-    case "onGoing":
-      return "ongoing";
-    case "Completed":
-      return "completed";
-  }
+  const resObj = {
+    notStarted: "not started",
+    onGoing: "ongoing",
+    Completed: "completed",
+  };
+  return resObj[todo.state];
 };
