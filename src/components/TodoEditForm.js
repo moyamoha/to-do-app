@@ -111,7 +111,7 @@ export default function TodoEditForm({ todo }) {
           className="btn btn-secondary ml-2"
           onClick={handleStart}
         >
-          Take under work
+          start
         </button>
       ) : (
         <></>
