@@ -1,12 +1,12 @@
 import axios from "axios";
-import { completeTodo } from "../slices/todos";
+import { takeTodoUnderWork } from "../slices/todos";
 
-const complete = (id) => {
+const startTodo = (id) => {
   return async (dispatch, getState) => {
     const token = getState().user.token;
     try {
       const res = await axios.patch(
-        "/todos/markAsDone/" + id,
+        "/todos/markAsStarted/" + id,
         {},
         {
           headers: {
@@ -14,11 +14,9 @@ const complete = (id) => {
           },
         }
       );
-      if (res.status === 200) {
-        dispatch(completeTodo(id));
-      }
+      dispatch(takeTodoUnderWork(id));
     } catch (err) {}
   };
 };
 
-export default complete;
+export default startTodo;
